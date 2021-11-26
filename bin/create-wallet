@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+"""
+Create a new wallet and airdrop some SOL to it.
+"""
+
+import argparse
+import subprocess as sp
+import os
+import io
+import sys
+
+from typing import Any
+
+def parse_args() -> Any:
+    description = 'create a new wallet and airdrop lamports to it.'
+    parser = argparse.ArgumentParser(description=description)
+    parser.add_argument('path', type=str, help='path to new keypair file')
+    parser.add_argument('amount', type=int, help='amount of SOL to airdrop')
+    return parser.parse_args()
+
+
+def create_keypair_file(path: str) -> str:
+    sp.call(f'solana-keygen new --outfile {path}'.split())
+
+
+def airdrop_sol(path: str, amount: int) -> None:
+    sp.call(f'solana airdrop {amount} -k {path}'.split())
+
+
+def main() -> int:
+    args = parse_args()
+    path = os.path.realpath(os.path.expandvars(os.path.expanduser(args.path)))
+    create_keypair_file(path)
+    airdrop_sol(path, args.amount)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+solana program deploy dist/program/base.so

@@ -1,0 +1,5 @@
+max_width = 80
+fn_args_layout = "Vertical"
+imports_layout = "Vertical"
+match_block_trailing_comma = true
+trailing_comma = "Always"
