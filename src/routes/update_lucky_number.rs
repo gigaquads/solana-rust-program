@@ -45,7 +45,7 @@ pub fn process_request(
     );
 
     account.value = data.value;
-    save::<LuckyNumberAccount>(account_info, &account)?;
+    save(account_info, &account)?;
 
     Ok(())
 }

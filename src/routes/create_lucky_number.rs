@@ -39,7 +39,7 @@ pub fn process_request(
 
     let account = LuckyNumberAccount { value: data.value };
 
-    save::<LuckyNumberAccount>(account_info, &account)?;
+    save(account_info, &account)?;
 
     Ok(())
 }
